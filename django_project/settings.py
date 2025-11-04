@@ -135,4 +135,4 @@ STATICFILES_DIRS = [
 if not DEBUG:  # production mode
     SECRET_KEY = os.environ.get('SECRET_KEY', SECRET_KEY)
 
-ALLOWED_HOSTS = ['health-analysis-fpj9.onrender.com', 'localhost']
+ALLOWED_HOSTS = ['health-analysis-fpj9.onrender.com', 'localhost', '127.0.0.1']
