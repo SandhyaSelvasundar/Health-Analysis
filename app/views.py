@@ -17,7 +17,7 @@ def about(request):
 def contact(request):
     return render(request,'app/contact.html')
 def result(request):
-    data = pd.read_excel(r'C:\Users\hp\Desktop\sandhya\static\dataset1.xlsx')
+    data = pd.read_excel(r'static\dataset1.xlsx')
     data['PULSE']=data['PULSE'].fillna(data['PULSE'].median())
     data['SpO2']=data['SpO2'].fillna(data['SpO2'].median())
     X = data.iloc[:, :-1].values
@@ -34,13 +34,18 @@ def result(request):
     val7=float(request.GET['n7'])
   
     pred=classifier.predict([[val1,val2,val3,val4,val5,val6,val7]])
+    # should be safe values [57, 75, 75, 18, 98, 116, 75]
+    # should be risky values [45, 80, 80, 18, 98, 110, 70]
+
+    pred_value = int(pred[0])
+
     result1=""
-    if pred==[1]:
+    if pred_value == 1:
         result1="Sorry, you are not able to travel.Please go to the doctor for further details.Because, you may have shortness of breathe or blood clots in some parts of your body.."
-        return render(request,'app/predict.html',{"result2":result1})
          
     else:
         result1="Happy to say that you can travel!!!"
-        return render(request,'app/predict.html',{"result2":result1})
+    
+    return render(request,'app/predict.html',{"result2":result1})
 
 

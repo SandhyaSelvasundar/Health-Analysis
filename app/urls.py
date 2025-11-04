@@ -3,7 +3,7 @@ from .import views
 urlpatterns=[
     path('',views.home,name='home'),
     path('predict/',views.predict,name='predict'),
-    path('predict/result/',views.result),
+    path('predict/result/',views.result,name='result'),
     path('contact/',views.contact,name='contact'),
     path('about/', views.about, name='about')
     
